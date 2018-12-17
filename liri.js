@@ -1,83 +1,28 @@
 require("dotenv").config();
 
 
-//Spotoify Keys
+//Spotify Keys
 var keys = require("./keys.js");
-var spotify = require('node-spotify-api');
+var Spotify = require('node-spotify-api');
 
-console.log(keys);
-var spotify = new spotify(keys.spotify);
-
-
-
-// // var song = process.argv.slice(3).join(" ");
+// console.log(keys);
+// var spotify = new Spotify(keys.spotify);
 
 
-// var result = spotify.search: function({ type: 'artist OR album OR track', query: 'My search query' }, hollaback)
 
+// var song = process.argv.slice(2).join(" ");
 
-// var spotify = require('spotify');
-
-spotify.search({ type: 'track', query: 'dancing in the moonlight', id: '2cdd6a42f4f4669aab9337cc3a6ed06' }, function(err, data) {
-    if ( err ) {
-        console.log('Error occurred: ' + err);
-        return;
-    }
-
-    console.log(data);
-
+var Spotify = require('node-spotify-api');
+ 
+var spotify = new Spotify({
+  id: e2cdd6a42f4f4669aab9337cc3a6ed06,
+  secret: 35f5dd7986c1480aa4ad72c5bba40d03
 });
-
-
-
-
-
-
-switch (action) {
-    case "concert-this":
-        concert();
-        break;
-
-    case "spotify-this-song":
-        spotify();
-        break;
-
-    case "movie-this":
-        movie();
-        break;
-
-    case "do-what-it-says":
-        doWhatItSays();
-        break;
-
-    default:
-
-    console.log("Placeholder Text");
-
-}
-
-
-//Function(s) Code
-function concert() {
-
-
-
-};
-
-function spotify() {
-
-
-
-};
-
-function movie() {
-
-
-
-};
-
-function doWhatItSays() {
-
-
-
-};
+ 
+spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
+  if (err) {
+    return console.log('Error occurred: ' + err);
+  }
+ 
+console.log(data); 
+});
