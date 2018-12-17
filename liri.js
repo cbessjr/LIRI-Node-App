@@ -17,7 +17,7 @@ switch (action) {
         break;
 
     case "spotify-this-song":
-        spotDo();
+        spotifyDo();
         break;
 
     case "movie-this":
@@ -42,40 +42,51 @@ function concert() {
 
 };
 
-function spotDo() {
+function spotifyDo() {
 
     var song = process.argv.slice(3).join(" ");
 
-    spotify.search({ type: 'track', query: song }, function (err, data) {
-        if (err) {
-            return console.log('Error occurred: ' + err);
-        }
+        if (song === "") {
+
+            console.log("Artist: " + "Ace of Base");
+            console.log("Song: " + "The Sign");
+            console.log("Album: " + "The Sign");
+            console.log("Preview: " + "https://www.youtube.com/watch?v=iqu132vTl5Y");
 
 
-        var tableArray = [];
+        } else {
 
-        for (var i = 0; i < data.tracks.items.length; i++) {
-            var result = {
-                artist: data.tracks.items[i].album.artists[0].name,
-                album_name: data.tracks.items[i].album.name,
-                song_name: data.tracks.items[i].name,
-                preview_url: data.tracks.items[i].preview_url
-            }
-            tableArray.push(result);
-        }
+            spotify.search({ type: 'track', query: song }, function (err, data) {
+                if (err) {
+                    return console.log('Error occurred: ' + err);
+                }
 
 
+                var tableArray = [];
 
-        console.log("Artist: " + result.artist);
-        console.log("Song: " + result.song_name);
-        console.log("Album: " + result.album_name);
-        console.log("Preview: " + result.preview_url);
+                for (var i = 0; i < data.tracks.items.length; i++) {
+                    var result = {
+                        artist: data.tracks.items[i].album.artists[0].name,
+                        album_name: data.tracks.items[i].album.name,
+                        song_name: data.tracks.items[i].name,
+                        preview_url: data.tracks.items[i].preview_url
+                    }
+                    tableArray.push(result);
+                }
 
-    });
 
 
-};
+                console.log("Artist: " + result.artist);
+                console.log("Song: " + result.song_name);
+                console.log("Album: " + result.album_name);
+                console.log("Preview: " + result.preview_url);
 
+            });
+
+
+    };
+
+}
 function movie() {
 
 
