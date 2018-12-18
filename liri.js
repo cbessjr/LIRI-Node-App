@@ -42,7 +42,7 @@ switch (action) {
 //Function(s) Code
 function concert() {
 
-    var band = process.argv.slice(3). join(" ");
+    var band = process.argv.slice(3).join(" ");
 
     if (band === "") {
 
@@ -50,30 +50,12 @@ function concert() {
 
     } else {
 
-        axios.get("https://rest.bandsintown.com/artists/" + band + "/events?app_id=codingbootcamp")
+        axios.get("https://rest.bandsintown.com/artists/" + band + "/events?app_id=codingbootcamp").then(
 
- 
-        // bandsintown
-        // .getArtistEventList('Skrillex')
-        // .then(function(events) {
-        //     // return array of events
+            function (response) {
 
-        //     console.log(data);
-
-            // var eventsArray = [];
-
-            // for (var i = 0; i < data.tracks.items.length; i++) {
-            //     var result = {
-            //         artist: data.tracks.items[i].album.artists[0].name,
-            //         album_name: data.tracks.items[i].album.name,
-            //         song_name: data.tracks.items[i].name,
-            //         preview_url: data.tracks.items[i].preview_url
-            //     }
-            //     eventsArray.push(result);
-            // }
-
-//   });
-
+                console.log(response.data);
+            })
 
     }
 
@@ -126,10 +108,25 @@ function spotifyDo() {
 }
 function movie() {
 
+    var movie = process.argv.slice(3).join(" ");
+
+    if (movie === "") {
+
+        console.log("Please enter a movie search with the syntax: node liri.js movie-this '<movie name here>");
+
+    } else {
+
+            axios.get("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=adaf8b76").then(
+                function(response) {
+                console.log("The movie's rating is: " + response.data.imdbRating);
+                }
+      );
+      
 
 };
 
 function doWhatItSays() {
 
+    console.log("Hello");
 
 };
