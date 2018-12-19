@@ -22,6 +22,9 @@ var fs = require("fs");
 //AXIOS
 var axios = require("axios");
 
+//MOMENT
+var moment = require("moment");
+
 //Action from the console to determin the case/function to be processed
 var action = process.argv[2];
 var request = process.argv.slice(3).join(" ");
@@ -39,24 +42,22 @@ function concert(band) {
 
 
     if (band === "") {
-
         console.log("Please enter a concert search with the syntax: node liri.js concert-this <artist/band name here>");
-
     } else {
-
         axios.get("https://rest.bandsintown.com/artists/" + band + "/events?app_id=codingbootcamp").then(
-
             function (response) {
+                console.log("Venue: " + response.data[0].venue.name);
+                console.log("Location (City): " + response.data[0].venue.city);
+                console.log("Location (Region): " + response.data[0].venue.region);
+                console.log("Location (Country): " + response.data[0].venue.country);
 
-                // console.log(response.data);
-                console.log(response.data[0].venue.name)
+                var concertDate = response.data[0].datetime;
+                var date = moment(concertDate['datetime']).format('dddd, MMMM Do YYYY');
+                console.log("Concert Date: " + date);
 
                 // fs.writeFileSync("output.txt", JSON.stringify(response.data));
-
             })
-
     }
-
 };
 
 //SpotifyDo function for the Spotify NPM
@@ -64,20 +65,15 @@ function spotifyDo(song) {
 
 
     if (song === "") {
-
         console.log("Artist: " + "Ace of Base");
         console.log("Song: " + "The Sign");
         console.log("Album: " + "The Sign");
         console.log("Preview: " + "https://www.youtube.com/watch?v=iqu132vTl5Y");
-
-
     } else {
-
         spotify.search({ type: 'track', query: song }, function (err, data) {
             if (err) {
                 return console.log('Error occurred: ' + err);
             }
-
 
             var tableArray = [];
 
@@ -91,18 +87,13 @@ function spotifyDo(song) {
                 tableArray.push(result);
             }
 
-
-
             console.log("Artist: " + result.artist);
             console.log("Song: " + result.song_name);
             console.log("Album: " + result.album_name);
             console.log("Preview: " + result.preview_url);
 
         });
-
-
     };
-
 }
 
 //Movie function for the OMDB NPM
@@ -110,16 +101,12 @@ function movie(movie) {
 
 
     if (movie === "") {
-
         console.log("Please enter a movie search with the syntax: node liri.js movie-this '<movie name here>");
-
     } else {
-
         axios.get("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=" + omdbKey).then(
             function (response) {
 
                 // console.log(response.data);
-
                 console.log("Title: " + response.data.Title);
                 console.log("Year: " + response.data.Year);
                 console.log("IMDB Rating: " + response.data.imdbRating);
@@ -129,46 +116,35 @@ function movie(movie) {
                 console.log("Plot: " + response.data.Plot);
                 console.log("Actors: " + response.data.Actors);
 
-
             }
         )
     };
-
-
 };
 
 function doWhatItSays() {
-
-    // console.log("Hello");
-
-
 
     fs.readFile("random.txt", "utf8", function (error, data) {
         if (error) {
             return console.log(error);
         }
-        console.log(data);
+        // console.log(data);
         var dataArr = data.split(",");
-        console.log(dataArr);
+
+        // console.log(dataArr);
         var command = dataArr[0];
         var request = dataArr[1];
 
         if (command === "do-what-it-says") {
-
             console.log("error");
         } else {
-
             selections(command, request);
         }
     })
-
 };
 
 
 function selections(action, request) {
     switch (action) {
-
-
         case "concert-this":
             concert(request);
             // console.log("concert works");
@@ -189,11 +165,6 @@ function selections(action, request) {
             break;
 
         default:
-
-            console.log("Placeholder Text");
-
+            console.log("Pleae enter a command: concert-this, spotify-this-song, movie-this, do-what-it-says");
     }
-
-
-
 }
