@@ -15,12 +15,22 @@ This app allows a user to choose from one of four commands:
 
 ## Running the application
 ### 1. Install Node
-        
-       Instructions found at [npmjs.com](https://docs.npmjs.com/getting-started/installing-node)
+
+- NPM (Node Package Manager) (https://docs.npmjs.com/getting-started/installing-node)
 
 
-### 2. Install NPM Packages
+### 2. Clone the applications
+
+Clone the application from the following location... (https://github.com/cbessjr/LIRI-Node-App
+
+### 3. Install NPM Packages
+
+Install the packages from the terminal in the folder the application
 
 - Node-Spotify-API(https://www.npmjs.com/package/node-spotify-api)
-
+- Axios (https://www.npmjs.com/package/axios)
+- OMDb API (https://www.npmjs.com/package/omdb)
+- Bands In Town API (http://www.artists.bandsintown.com/bandsintown-api)
+- Moment (https://www.npmjs.com/package/moment)
+- DotEnv (https://www.npmjs.com/package/dotenv)
 
