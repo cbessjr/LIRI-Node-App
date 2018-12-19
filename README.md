@@ -21,6 +21,6 @@ This app allows a user to choose from one of four commands:
 
 ### 2. Install NPM Packages
 
-- Node-Spotify-API
+- Node-Spotify-API(https://www.npmjs.com/package/node-spotify-api)
 
 
