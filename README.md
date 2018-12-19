@@ -15,9 +15,12 @@ This app allows a user to choose from one of four commands:
 
 ## Running the application
 ### 1. Install Node
+        
+       Instructions found at [npmjs.com](https://docs.npmjs.com/getting-started/installing-node)
 
 
+### 2. Install NPM Packages
 
-### 2. Install node (the application requires the node application)
+- Node-Spotify-API
 
-Instructions found at [npmjs.com](https://docs.npmjs.com/getting-started/installing-node)
+
