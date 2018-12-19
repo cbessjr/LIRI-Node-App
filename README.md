@@ -6,10 +6,10 @@ LIRI is a Node.js app for retrieving entertainment information using NPM package
 
 This app allows a user to choose from one of four commands:
 
-*[concert-this] (associated with the Bands In Town API)<br>
-*[spotify-this-song] (associated with the Spotify API)<br>
-*[movie-this] (associated with the OMDb API)<br>
-*[do-what-it-says] (associated with a combination of the Spotify API and FS API)
+1. [concert-this] (associated with the Bands In Town API)<br>
+2. [spotify-this-song] (associated with the Spotify API)<br>
+3. [movie-this] (associated with the OMDb API)<br>
+4. [do-what-it-says] (associated with a combination of the Spotify API and FS API)
 
 
 
