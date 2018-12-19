@@ -14,9 +14,9 @@ This app allows a user to choose from one of four commands:
 
 
 ## Running the application
-### 1. Install NodeClone the repository
+### 1. Install Node
 
-![Clone or Download Image](https://i.imgur.com/ZP8N719.png)
+
 
 ### 2. Install node (the application requires the node application)
 
