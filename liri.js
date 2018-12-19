@@ -16,49 +16,27 @@ var omdbKey = "adaf8b76";
 var OMDB = require('omdb');
 // var omdb = new OMDB(omdbKey);
 
+//FS
+var fs = require("fs");
 
 //AXIOS
 var axios = require("axios");
 
 //Action from the console to determin the case/function to be processed
 var action = process.argv[2];
+var request = process.argv.slice(3).join(" ");
+console.log(action);
+
+selections(action, request);
 
 
-
-switch (action) {
-
-    case "concert-this":
-        concert();
-        console.log("concert works");
-        break;
-
-    case "spotify-this-song":
-        spotifyDo();
-        break;
-
-    case "movie-this":
-        movie();
-        console.log("movie works");
-        break;
-
-    case "do-what-it-says":
-        doWhatItSays();
-        console.log("Do what it says works");
-        break;
-
-    default:
-
-    console.log("Placeholder Text");
-
-}
 
 //_______________________________________Function(s) Code__________________________________________
 
 
 //Concert function for the Bands In Town NPM
-function concert() {
+function concert(band) {
 
-    var band = process.argv.slice(3).join(" ");
 
     if (band === "") {
 
@@ -70,7 +48,11 @@ function concert() {
 
             function (response) {
 
-                console.log(response.data);
+                // console.log(response.data);
+                console.log(response.data[0].venue.name)
+
+                // fs.writeFileSync("output.txt", JSON.stringify(response.data));
+
             })
 
     }
@@ -78,46 +60,45 @@ function concert() {
 };
 
 //SpotifyDo function for the Spotify NPM
-function spotifyDo() {
-
-    var song = process.argv.slice(3).join(" ");
-
-        if (song === "") {
-
-            console.log("Artist: " + "Ace of Base");
-            console.log("Song: " + "The Sign");
-            console.log("Album: " + "The Sign");
-            console.log("Preview: " + "https://www.youtube.com/watch?v=iqu132vTl5Y");
+function spotifyDo(song) {
 
 
-        } else {
+    if (song === "") {
 
-            spotify.search({ type: 'track', query: song }, function (err, data) {
-                if (err) {
-                    return console.log('Error occurred: ' + err);
+        console.log("Artist: " + "Ace of Base");
+        console.log("Song: " + "The Sign");
+        console.log("Album: " + "The Sign");
+        console.log("Preview: " + "https://www.youtube.com/watch?v=iqu132vTl5Y");
+
+
+    } else {
+
+        spotify.search({ type: 'track', query: song }, function (err, data) {
+            if (err) {
+                return console.log('Error occurred: ' + err);
+            }
+
+
+            var tableArray = [];
+
+            for (var i = 0; i < data.tracks.items.length; i++) {
+                var result = {
+                    artist: data.tracks.items[i].album.artists[0].name,
+                    album_name: data.tracks.items[i].album.name,
+                    song_name: data.tracks.items[i].name,
+                    preview_url: data.tracks.items[i].preview_url
                 }
-
-
-                var tableArray = [];
-
-                for (var i = 0; i < data.tracks.items.length; i++) {
-                    var result = {
-                        artist: data.tracks.items[i].album.artists[0].name,
-                        album_name: data.tracks.items[i].album.name,
-                        song_name: data.tracks.items[i].name,
-                        preview_url: data.tracks.items[i].preview_url
-                    }
-                    tableArray.push(result);
-                }
+                tableArray.push(result);
+            }
 
 
 
-                console.log("Artist: " + result.artist);
-                console.log("Song: " + result.song_name);
-                console.log("Album: " + result.album_name);
-                console.log("Preview: " + result.preview_url);
+            console.log("Artist: " + result.artist);
+            console.log("Song: " + result.song_name);
+            console.log("Album: " + result.album_name);
+            console.log("Preview: " + result.preview_url);
 
-            });
+        });
 
 
     };
@@ -125,9 +106,8 @@ function spotifyDo() {
 }
 
 //Movie function for the OMDB NPM
-function movie() {
+function movie(movie) {
 
-    var movie = process.argv.slice(3).join(" ");
 
     if (movie === "") {
 
@@ -135,29 +115,85 @@ function movie() {
 
     } else {
 
-            axios.get("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=" + omdbKey).then(
-                function(response) {
-                    
-                    // console.log(response.data);
+        axios.get("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=" + omdbKey).then(
+            function (response) {
 
-                    console.log("Title: " + response.data.Title);
-                    console.log("Year: " + response.data.Year);
-                    console.log("IMDB Rating: " + response.data.imdbRating);
-                    console.log("Rotten Tomatoe Rating: " + response.data.Source);
-                    console.log("Country: " + response.data.Country);
-                    console.log("Language: " + response.data.Language);
-                    console.log("Plot: " + response.data.Plot);
-                    console.log("Actors: " + response.data.Actors);
+                // console.log(response.data);
+
+                console.log("Title: " + response.data.Title);
+                console.log("Year: " + response.data.Year);
+                console.log("IMDB Rating: " + response.data.imdbRating);
+                console.log("Rotten Tomatoe Rating: " + response.data.Ratings[1].Value);
+                console.log("Country: " + response.data.Country);
+                console.log("Language: " + response.data.Language);
+                console.log("Plot: " + response.data.Plot);
+                console.log("Actors: " + response.data.Actors);
 
 
-                }
-            )};
-      
+            }
+        )
+    };
+
 
 };
 
 function doWhatItSays() {
 
-    console.log("Hello");
+    // console.log("Hello");
+
+
+
+    fs.readFile("random.txt", "utf8", function (error, data) {
+        if (error) {
+            return console.log(error);
+        }
+        console.log(data);
+        var dataArr = data.split(",");
+        console.log(dataArr);
+        var command = dataArr[0];
+        var request = dataArr[1];
+
+        if (command === "do-what-it-says") {
+
+            console.log("error");
+        } else {
+
+            selections(command, request);
+        }
+    })
 
 };
+
+
+function selections(action, request) {
+    switch (action) {
+
+
+        case "concert-this":
+            concert(request);
+            // console.log("concert works");
+            break;
+
+        case "spotify-this-song":
+            spotifyDo(request);
+            break;
+
+        case "movie-this":
+            movie(request);
+            // console.log("movie works");
+            break;
+
+        case "do-what-it-says":
+            doWhatItSays();
+            // console.log("Do what it says works");
+            break;
+
+        default:
+
+            console.log("Placeholder Text");
+
+    }
+
+
+
+}
