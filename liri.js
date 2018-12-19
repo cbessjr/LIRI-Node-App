@@ -1,16 +1,29 @@
 require("dotenv").config();
 
 
-//Spotify Keys
+//Spotify
 var keys = require("./keys.js");
 var Spotify = require('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
 
+//Bands In Town
 var APP_ID = "codingbootcamp";
 var Bandsintown = require('bandsintown')(APP_ID);
-var bandsintown = new Bandsintown(APP_ID);
+// var bandsintown = new Bandsintown(APP_ID);
 
+//OMDB
+var omdbKey = "adaf8b76";
+var OMDB = require('omdb');
+// var omdb = new OMDB(omdbKey);
+
+
+//AXIOS
+var axios = require("axios");
+
+//Action from the console to determin the case/function to be processed
 var action = process.argv[2];
+
+
 
 switch (action) {
 
@@ -39,7 +52,10 @@ switch (action) {
 
 }
 
-//Function(s) Code
+//_______________________________________Function(s) Code__________________________________________
+
+
+//Concert function for the Bands In Town NPM
 function concert() {
 
     var band = process.argv.slice(3).join(" ");
@@ -61,6 +77,7 @@ function concert() {
 
 };
 
+//SpotifyDo function for the Spotify NPM
 function spotifyDo() {
 
     var song = process.argv.slice(3).join(" ");
@@ -106,6 +123,8 @@ function spotifyDo() {
     };
 
 }
+
+//Movie function for the OMDB NPM
 function movie() {
 
     var movie = process.argv.slice(3).join(" ");
@@ -116,11 +135,23 @@ function movie() {
 
     } else {
 
-            axios.get("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=adaf8b76").then(
+            axios.get("http://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=" + omdbKey).then(
                 function(response) {
-                console.log("The movie's rating is: " + response.data.imdbRating);
+                    
+                    // console.log(response.data);
+
+                    console.log("Title: " + response.data.Title);
+                    console.log("Year: " + response.data.Year);
+                    console.log("IMDB Rating: " + response.data.imdbRating);
+                    console.log("Rotten Tomatoe Rating: " + response.data.Source);
+                    console.log("Country: " + response.data.Country);
+                    console.log("Language: " + response.data.Language);
+                    console.log("Plot: " + response.data.Plot);
+                    console.log("Actors: " + response.data.Actors);
+
+
                 }
-      );
+            )};
       
 
 };
