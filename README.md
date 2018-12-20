@@ -21,11 +21,11 @@ This app allows a user to choose from one of four commands:
 
 ### 2. Clone the applications
 
-Clone the application from the following location... (https://github.com/cbessjr/LIRI-Node-App
+  Clone the application from the following location... (https://github.com/cbessjr/LIRI-Node-App
 
 ### 3. Install NPM Packages
 
-Install the packages from the terminal in the folder the application
+  Install the packages from the terminal in the folder the application was cloned.
 
 - Node-Spotify-API(https://www.npmjs.com/package/node-spotify-api)
 - Axios (https://www.npmjs.com/package/axios)
@@ -34,3 +34,18 @@ Install the packages from the terminal in the folder the application
 - Moment (https://www.npmjs.com/package/moment)
 - DotEnv (https://www.npmjs.com/package/dotenv)
 
+
+### 4. Acquire API key(s)
+
+ - Spotify (https://developer.spotify.com/dashboard/login)
+        - Create a Spotify account (Or use an existing account)
+        - Register for the API key and Spotify Secret
+ - Once acquired, you will need to create the file .env. Paste your key and secret in the file in the following format:
+ 
+ <Code Start Below>
+ # Spotify API keys
+
+SPOTIFY_ID= key
+SPOTIFY_SECRET= secret
+
+<Code Ends Here>
