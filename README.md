@@ -42,10 +42,10 @@ This app allows a user to choose from one of four commands:
         - Register for the API key and Spotify Secret
  - Once acquired, you will need to create the file .env. Paste your key and secret in the file in the following format:
  
- <Code Start Below>
+//Code Start Below
  # Spotify API keys
 
 SPOTIFY_ID= key
 SPOTIFY_SECRET= secret
 
-<Code Ends Here>
+//Code Ends Here
