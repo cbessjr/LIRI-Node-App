@@ -42,23 +42,39 @@ This app allows a user to choose from one of four commands:
         - Register for the API key and Spotify Secret
  - Once acquired, you will need to create the file .env. Paste your key and secret in the file in the following format:
  
-//Code Start Below
- #### Spotify API keys
+  //Code Start Below
+   #### Spotify API keys
 
-SPOTIFY_ID= key
-SPOTIFY_SECRET= secret
+  SPOTIFY_ID= key
+  SPOTIFY_SECRET= secret
 
-//Code Ends Here
+  //Code Ends Here
 
 
- #### Bands In Town API Key
+   #### Bands In Town API Key
+
+   Provided in-code
+
+
+   #### OMDb API Key
+
+   Provided in-code
  
- Provided in-code
  
+ ### 5. Using the Application
  
- #### OMDb API Key
+ Once the required packages have been installed, use the following commands to pull song, concert, and movie data using the following syntax for each command:
  
- Provided in-code
- 
- 
- 
+ - node liri.js spotify-this-song '<song name here>'
+ - node liri.js movie-this '<movie name here>'
+ - node liri.js do-what-it-says
+ - node liri.js concert-this <artist/band name here>
+  
+  
+  
+  
+  
+  ### Future Updates
+  
+  - Additional error handling for null values and null returns (bands not found, songs and movies misspelled)
+  - Command list to limit the user input to avoid typos
