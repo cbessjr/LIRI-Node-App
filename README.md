@@ -65,8 +65,8 @@ This app allows a user to choose from one of four commands:
  
  Once the required packages have been installed, use the following commands to pull song, concert, and movie data using the following syntax for each command:
  
- - node liri.js spotify-this-song '<song name here>'
- - node liri.js movie-this '<movie name here>'
+ - node liri.js spotify-this-song <song name here>
+ - node liri.js movie-this <movie name here>
  - node liri.js do-what-it-says
  - node liri.js concert-this <artist/band name here>
   
