@@ -43,7 +43,7 @@ This app allows a user to choose from one of four commands:
  - Once acquired, you will need to create the file .env. Paste your key and secret in the file in the following format:
  
 //Code Start Below
- # Spotify API keys
+ #### Spotify API keys
 
 SPOTIFY_ID= key
 SPOTIFY_SECRET= secret
@@ -51,4 +51,14 @@ SPOTIFY_SECRET= secret
 //Code Ends Here
 
 
-- Bands In Town
+ #### Bands In Town API Key
+ 
+ Provided in-code
+ 
+ 
+ #### OMDb API Key
+ 
+ Provided in-code
+ 
+ 
+ 
