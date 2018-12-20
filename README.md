@@ -71,6 +71,9 @@ This app allows a user to choose from one of four commands:
  - node liri.js concert-this <artist/band name here>
   
   
+  Code execution examples can be seen in the LIRI-Node-App Flow Documentation.docx file located in the /assets.
+  
+  
   
   
   
